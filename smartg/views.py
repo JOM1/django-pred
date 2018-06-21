@@ -20,7 +20,7 @@ def upload_file(request):
         if form.is_valid():
             upload_image(request.FILES['image'], session_id)
             http = urllib3.PoolManager()
-            response = http.request('GET', 'http://127.0.0.1:5000/pred/%s/%s' % ('images', session_id))
+            response = http.request('GET', 'http://172.17.0.4:5000/pred/%s/%s' % ('images', session_id))
             result = response.data.decode('utf-8')
 
     else:
