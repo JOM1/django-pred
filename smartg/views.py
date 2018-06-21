@@ -12,6 +12,8 @@ import urllib3
 
 def upload_file(request):
     session_id = request.COOKIES.get(settings.SESSION_COOKIE_NAME)
+    if not session_id:
+        session_id = '0'
     result = ''
     if request.method == 'POST':
         form = UploadImageForm(request.POST, request.FILES)
