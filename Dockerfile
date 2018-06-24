@@ -1,4 +1,4 @@
-FROM python:alpine3.7
+FROM registry.access.redhat.com/rhscl/python-36-rhel7
 
 WORKDIR /photoSer
 COPY . /photoSer

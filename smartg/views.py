@@ -9,6 +9,7 @@ from .forms import UploadImageForm
 from django.conf import settings
 from .botoClient import upload_image, get_image
 import urllib3
+import os
 
 def upload_file(request):
     session_id = request.COOKIES.get(settings.SESSION_COOKIE_NAME)
@@ -20,7 +21,7 @@ def upload_file(request):
         if form.is_valid():
             upload_image(request.FILES['image'], session_id)
             http = urllib3.PoolManager()
-            response = http.request('GET', 'http://172.17.0.4:5000/pred/%s/%s' % ('images', session_id))
+            response = http.request('GET', 'http://%s:5000/pred/%s/%s' % (os.environ['FLASK_IP'], 'images', session_id))
             result = response.data.decode('utf-8')
 
     else:
